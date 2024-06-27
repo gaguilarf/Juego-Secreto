@@ -39,15 +39,16 @@ function limpiarCampo(){
 function reiniciarJuego(){
     limpiarCampo();
     condicionesIniciales();
+    asignarTextoElemento('p', `Indica un numero entre 1 y ${numeroMaximo}`);
     document.getElementById('reiniciar').setAttribute('disabled', 'true');
 }
 
 function generarNumeroSecreto(){
-    let numeroGenerado = Math.floor(Math.random() * 10) + 1;
+    let numeroGenerado = Math.floor(Math.random() * numeroMaximo) + 1;
     if(listaNumerosSorteados.length == numeroMaximo){
         return asignarTextoElemento('p', 'Ya se sortearon todos los numeros posibles');
     } else {
-        if(listaNumerosSorteados.includes(numeroSecreto)){
+        if(listaNumerosSorteados.includes(numeroGenerado)){
             return generarNumeroSecreto();
         } else {
             listaNumerosSorteados.push(numeroGenerado);
